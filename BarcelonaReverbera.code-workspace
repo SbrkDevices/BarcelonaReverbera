@@ -1,0 +1,87 @@
+{
+	"folders": [
+		{
+			"name": "build_scripts",
+			"path": "build_scripts"
+		},
+		{
+			"name": "vst3",
+			"path": "vst3"
+		},
+		{
+			"name": "vst3sdk",
+			"path": "build/_deps/vst3sdk-src/"
+		},
+		{
+			"name": "convert_wav_to_c_array",
+			"path": "convert_wav_to_c_array"
+		}
+	],
+
+
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+
+			/*
+			****    CMAKE TASKS    ****
+			*/
+			{
+				"label": "Build Debug",
+				"type": "shell",
+				"command": "./build_debug.sh",
+				"options":
+				{
+					"cwd": "${workspaceFolder:build_scripts}/"
+				},
+				"presentation":
+				{
+					"echo": true,
+					"reveal": "always",
+					"focus": false,
+					"panel": "dedicated",
+					"clear": true
+				},
+				"group": "build",
+				"problemMatcher": []
+			},
+			{
+				"label": "Build Release",
+				"type": "shell",
+				"command": "./build_release.sh",
+				"options":
+				{
+					"cwd": "${workspaceFolder:build_scripts}/"
+				},
+				"presentation":
+				{
+					"echo": true,
+					"reveal": "always",
+					"focus": false,
+					"panel": "dedicated",
+					"clear": true
+				},
+				"group": "build",
+				"problemMatcher": []
+			},
+		]
+	},
+
+
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			
+		],
+	},
+
+	"settings": {
+		"files.associations": {
+			"*.hzp": "xml",
+			"*.hzs": "xml",
+			"*.make": "makefile",
+			"functional": "cpp",
+			"random": "cpp"
+		}
+	}
+}

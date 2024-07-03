@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="350mm"
+   height="240mm"
+   viewBox="0 0 350.00001 240"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   sodipodi:docname="barcelona_reverbera.svg"
+   inkscape:export-filename="barcelona_reverbera.png"
+   inkscape:export-xdpi="25.4"
+   inkscape:export-ydpi="25.4"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.53821863"
+     inkscape:cx="485.86204"
+     inkscape:cy="478.43012"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1372"
+     inkscape:window-height="779"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="backgnd"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-168.5)"
+     style="display:inline">
+    <path
+       style="fill:#ffffff;stroke-width:1.63968"
+       d="m 0,168.5 h 350 v 240 H 0 Z"
+       id="backgnd"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52778px;line-height:1.25;font-family:Arimo;-inkscape-font-specification:Arimo;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="54.901039"
+       y="235.74896"
+       id="text137" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.2159px;opacity:0.4;fill:#ff0000;stroke-width:1.35132"
+       x="186.75252"
+       y="317.1174"
+       id="text1039"
+       transform="scale(0.80868901,1.2365693)"><tspan
+         sodipodi:role="line"
+         id="tspan1037"
+         style="stroke-width:1.35132"
+         x="186.75252"
+         y="317.1174">COLOR</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:1.35132"
+         x="186.75252"
+         y="337.38727"
+         id="tspan1041" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;opacity:0.4;fill:#ff0000;stroke-width:0.264583"
+       x="66.364761"
+       y="375.95132"
+       id="text1045"><tspan
+         sodipodi:role="line"
+         id="tspan1043"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:15.3645px;opacity:0.4;fill:#ff0000;stroke-width:1.28036"
+       x="76.254951"
+       y="298.49277"
+       id="text1051"
+       transform="scale(0.7628994,1.3107888)"><tspan
+         sodipodi:role="line"
+         id="tspan1049"
+         style="stroke-width:1.28036"
+         x="76.254951"
+         y="298.49277">SIZE</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:1.28036"
+         x="76.254951"
+         y="317.69839"
+         id="tspan1053" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;opacity:0.4;fill:#ff0000;stroke-width:0.264583"
+       x="107.65839"
+       y="369.56064"
+       id="text1057"><tspan
+         sodipodi:role="line"
+         id="tspan1055"
+         style="stroke-width:0.264583"></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16.574px;opacity:0.4;fill:#ff0000;stroke-width:1.38117"
+       x="276.98834"
+       y="343.63168"
+       id="text1061"
+       transform="scale(0.87822952,1.1386545)"><tspan
+         sodipodi:role="line"
+         id="tspan1059"
+         style="stroke-width:1.38117"
+         x="276.98834"
+         y="343.63168">DRY/WET</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:1.38117"
+         x="276.98834"
+         y="364.34918"
+         id="tspan1063" /></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="text"
+     style="display:inline" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="components"
+     style="display:inline">
+    <g
+       aria-label="zerua nahasi"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611px;line-height:1.25;font-family:Arimo;-inkscape-font-specification:Arimo;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       id="text349" />
+    <text
+       xml:space="preserve"
+       style="font-size:26.8045px;opacity:0.4;fill:#ff0000;stroke-width:2.23371"
+       x="128.86853"
+       y="23.44875"
+       id="text970"
+       transform="scale(0.58688529,1.7039105)"><tspan
+         sodipodi:role="line"
+         id="tspan968"
+         style="stroke-width:2.23371"
+         x="128.86853"
+         y="23.44875">BARCELONA REVERBERA</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:2.23371"
+         x="128.86853"
+         y="56.954376"
+         id="tspan972" /></text>
+  </g>
+</svg>
