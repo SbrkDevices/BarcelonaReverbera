@@ -4,7 +4,7 @@ Non-Uniform Partitioned Convolution Reverb VST3 plugin, developed on C++. Used t
 
 This convolution reverb was developed as part of the Barcelona Reverbera project, which aims to create a VST plugin where some iconic spaces of Barcelona can be used as convolution reverb impulse responses. The original impulse responses are not uploaded on this repo due to proprietary issues.
 
-## https://sbrkdevices.com/barcelona-reverbera
+https://sbrkdevices.com/barcelona-reverbera
 
 This plugin uses Steinberg's VST3 SDK.
 
