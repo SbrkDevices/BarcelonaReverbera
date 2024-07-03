@@ -6,7 +6,7 @@ REPO_URL="https://bitbucket.org/jpommier/pffft/get/fbc4058.tar.gz"
 COMMIT_ID="fbc4058"
 
 if [ ! -d "$PFFFT_DIR" ]; then
-  curl -L "$REPO_URL" -o "$COMMIT_ID.tar.gz" || exit 1
+  wget "$REPO_URL" -O "$COMMIT_ID.tar.gz" || exit 1
 
   mkdir -p "$PFFFT_DIR" || exit 1
 
