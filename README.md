@@ -4,7 +4,7 @@ Non-Uniform Partitioned Convolution Reverb VST3 plugin, developed on C++. Used t
 
 This convolution reverb was developed as part of the Barcelona Reverbera project, which aims to create a VST plugin where some iconic spaces of Barcelona can be used as convolution reverb impulse responses. The original impulse responses are not uploaded on this repo due to proprietary issues.
 
-https://sbrkdevices.com/barcelona-reverbera
+## https://sbrkdevices.com/barcelona-reverbera
 
 This plugin uses Steinberg's VST3 SDK.
 
@@ -14,6 +14,8 @@ In convert_wav_to_c_array, a python script creates C++ header files from impulse
 
 An impulse response (a delta function) is given as an example at vst3/src/impulse_responses/IR_example.h.
 
-Build process: in the build_scripts directory, execute either build_debug.sh or build_release.sh. VST3 plugin will be generated at build/VST3/Debug/BarcelonsReverbera.vst3 or build/VST3/Release/BarcelonsReverbera.vst3
+## Build process
+
+In the build_scripts directory, execute either build_debug.sh or build_release.sh. VST3 plugin will be generated at build/VST3/Debug/BarcelonsReverbera.vst3 or build/VST3/Release/BarcelonsReverbera.vst3
 
 Tested on Linux and Mac (Intel & Apple Silicon).
