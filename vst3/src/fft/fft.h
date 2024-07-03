@@ -46,6 +46,9 @@ public:
 			return;
 
 		pffft_destroy_setup(m_setup);
+
+		m_setup = nullptr;
+		m_workData = nullptr;
 	}
 
 	inline void process(float* audioData, cplx_f32* freqBinsData)

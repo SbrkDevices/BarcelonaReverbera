@@ -31,8 +31,6 @@ BarcelonaReverberaProcessor::BarcelonaReverberaProcessor()
 	setControllerClass(kBarcelonaReverberaControllerUID);
 
 	initIRsData();
-
-	m_convolutionReverb.init(16); // XXX can we know block size already?
 }
 
 BarcelonaReverberaProcessor::~BarcelonaReverberaProcessor()
@@ -53,6 +51,8 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::initialize(FUnknown* context)
 
 	/* If you don't need an event bus, you can remove the next line */
 	addEventInput(STR16("Event In"), 1);
+
+	m_convolutionReverb.init(16); // XXX can we know block size already?
 	
 	return kResultOk;
 }

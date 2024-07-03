@@ -69,8 +69,13 @@ private:
 		m_audioInBlocksWritePtr = 0;
 
 		for (uint32_t ch=0; ch<2; ch++)
-			memset(m_AUDIO_IN_BLOCKS[ch], 0, m_blockCount*m_fftFreqDomainMultiDimBufSize*sizeof(cplx_f32));
-		memset(m_overlap, 0, sizeof(m_overlap));
+		{
+			for (uint32_t b; b<m_blockCount; b++)
+				memset(m_AUDIO_IN_BLOCKS[ch][b], 0, m_fftFreqDomainMultiDimBufSize*sizeof(cplx_f32));
+			
+			memset(m_overlap[ch], 0, m_blockSize*sizeof(float));
+		}
+		
 		memset(m_audioOutputBuffer, 0, sizeof(m_audioOutputBuffer));
 
 		m_audioBufferPtr = 0;
