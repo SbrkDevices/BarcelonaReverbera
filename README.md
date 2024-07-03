@@ -12,6 +12,8 @@ The source code is in vst3/src. The Non-Uniform Partitioned Convolution implemen
 
 In convert_wav_to_c_array, a python script creates C++ header files from impulse responses stored in WAV files. The generated header files can be placed in vst/src/impulse_responses/ to be used for convolution.
 
-Build process: in the build_scripts directory, execute either build_debug.sh or build_release.sh.
+An impulse response (a delta function) is given as an example at vst3/src/impulse_responses/IR_example.h.
+
+Build process: in the build_scripts directory, execute either build_debug.sh or build_release.sh. VST3 plugin will be generated at build/VST3/Debug/BarcelonsReverbera.vst3 or build/VST3/Release/BarcelonsReverbera.vst3
 
 Tested on Linux and Mac (Intel & Apple Silicon).
