@@ -17,6 +17,8 @@ smtg_add_vst3plugin(BarcelonaReverbera
     external/pffft/pffft.h
     external/pffft/pffft.c
     src/fft/fft.h
+    src/impulse_responses/impulse_responses.h
+    src/impulse_responses/impulse_responses.cpp
     src/convolution_reverb/convolution_reverb_direct_stage.h
     src/convolution_reverb/convolution_reverb_fft_stage.h
     src/convolution_reverb/convolution_reverb.h

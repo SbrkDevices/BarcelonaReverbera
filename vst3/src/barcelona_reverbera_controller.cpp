@@ -35,9 +35,8 @@ tresult PLUGIN_API BarcelonaReverberaController::initialize(FUnknown* context)
 		
 		auto* selectedIRParam = new Vst::StringListParameter(USTRING("Selected IR"), BarcelonaReverberaParams::kParamSelectedIR);
 
-		extern char m_strIRNames[CONVRVRB_IR_COUNT][128];
-		for (int i=0; i<CONVRVRB_IR_COUNT; i++)
-			selectedIRParam->appendString(USTRING(m_strIRNames[i]));
+		for (int i=0; i<IMPULSE_RESPONSES_COUNT; i++)
+			selectedIRParam->appendString(USTRING(ImpulseResponses::getIrName(i)));
 
 		parameters.addParameter(selectedIRParam);
 	}

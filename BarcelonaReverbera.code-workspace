@@ -71,7 +71,36 @@
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [
-			
+			{
+				"name": "Debug (Bitwig Studio)",
+
+				"type": "cppdbg",
+				"request": "launch",
+
+				"linux":
+				{
+					"cwd": "${workspaceFolder:build_scripts}/",
+					"program": "/usr/bin/bitwig-studio",
+					"args": [],
+
+					"MIMode": "gdb",
+					"setupCommands":
+					[
+						{
+							"description": "Enable pretty-printing for gdb",
+							"text": "-enable-pretty-printing",
+							"ignoreFailures": true
+						}
+					],
+
+					"externalConsole": false,
+
+					"preLaunchTask": "Build Debug"
+				},
+
+				"stopAtEntry": false,
+				"environment": [],
+			},
 		],
 	},
 
@@ -81,7 +110,8 @@
 			"*.hzs": "xml",
 			"*.make": "makefile",
 			"functional": "cpp",
-			"random": "cpp"
+			"random": "cpp",
+			"string": "cpp"
 		}
 	}
 }

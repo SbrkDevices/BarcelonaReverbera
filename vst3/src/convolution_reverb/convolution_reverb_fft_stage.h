@@ -45,8 +45,6 @@ private:
 	uint32_t m_audioBufferPtr = 0; // position for reading/writing into/from m_audioInputBuffer/m_audioOutputBuffer
 	uint8_t m_audioReadWriteBufferIndex = 0; // index for double buffering (read/write) on m_audioInputBuffer/m_audioOutputBuffer
 
-	bool m_bufferIndexProcessed[2] = { false, false };
-
 	alignas(16) cplx_f32 m_AUDIO_IN_BLOCKS[2][m_blockCountMax][m_fftFreqDomainMultiDimBufSize] = {}; // last blocks of audio input (stereo), in freq-domain
 	uint32_t m_audioInBlocksWritePtr = 0; // block write pointer for m_AUDIO_IN_BLOCKS
 
@@ -109,9 +107,6 @@ public:
 		m_fft.init(m_fftSizeTimeDomain, m_dataFftWork);
 		m_ifft.init(m_fftSizeTimeDomain, m_dataFftWork);
 
-		m_bufferIndexProcessed[0] = true;
-		m_bufferIndexProcessed[1] = false;
-
 		reset();
 	}
 
@@ -141,8 +136,6 @@ public:
 		if (m_skipThisStage)
 			return;
 
-		assert(m_bufferIndexProcessed[m_audioReadWriteBufferIndex]);
-
 		float* audioInputBuffer[2] = { nullptr, nullptr};
 		float* audioOutputBuffer[2] = { nullptr, nullptr};
 
@@ -161,9 +154,6 @@ public:
 		}
 
 		m_audioBufferPtr += m_audioProcessingBlockSize;
-
-		if (m_audioBufferPtr >= m_blockSize)
-			m_bufferIndexProcessed[m_audioReadWriteBufferIndex] = false;
 
 		if (m_audioBufferPtr == m_convProcessingPointSamples)
 			processConvolution(numChannels);
@@ -193,8 +183,6 @@ private:
 		const uint8_t audioProcessBufferIndex = (m_numBuffers == 2)
 			? (m_audioReadWriteBufferIndex == 0) ? 1 : 0
 			: m_audioReadWriteBufferIndex;
-
-		assert(!m_bufferIndexProcessed[audioProcessBufferIndex]);
 
 		for (uint32_t ch=0; ch<numChannels; ch++)
 		{
@@ -231,8 +219,6 @@ private:
 			assert(m_audioInBlocksWritePtr == m_blockCount);
 			m_audioInBlocksWritePtr = 0;
 		}
-
-		m_bufferIndexProcessed[audioProcessBufferIndex] = true;
 	}
 
 	inline void processIrBlock(uint32_t ch, uint32_t blockIndex)

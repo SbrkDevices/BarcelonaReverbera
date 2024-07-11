@@ -3,17 +3,9 @@
 #include "pluginterfaces/base/funknown.h"
 #include "pluginterfaces/vst/vsttypes.h"
 
-//////////////////////////////////////////////////////////////////////////////
-
-#define CONVRVRB_USE_EXAMPLE_IR						(1)
+#include "impulse_responses/impulse_responses.h"
 
 //////////////////////////////////////////////////////////////////////////////
-
-#if CONVRVRB_USE_EXAMPLE_IR
-#	define CONVRVRB_IR_COUNT						(1)
-#else
-#	define CONVRVRB_IR_COUNT						(6)
-#endif
 
 #define BARCELONA_REVERBERA_MAX_BLOCK_SIZE						(8*1024)
 #define BARCELONA_REVERBERA_MIN_BLOCK_SIZE						(8)

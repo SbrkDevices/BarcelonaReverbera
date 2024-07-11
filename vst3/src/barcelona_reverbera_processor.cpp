@@ -2,17 +2,6 @@
 
 #include "barcelona_reverbera_processor.h"
 
-#if CONVRVRB_USE_EXAMPLE_IR
-#	include "impulse_responses/IR_example.h"
-#else
-#	include "impulse_responses/IR_20LUFS_MNAC.h"
-#	include "impulse_responses/IR_20LUFS_MODELO.h"
-#	include "impulse_responses/IR_20LUFS_PALAU.h"
-#	include "impulse_responses/IR_20LUFS_PARANINF.h"
-#	include "impulse_responses/IR_20LUFS_REFUGI_307.h"
-#	include "impulse_responses/IR_20LUFS_UB_LOBBY.h"
-#endif
-
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
@@ -22,15 +11,11 @@ using namespace Steinberg;
 
 //////////////////////////////////////////////////////////////////////////////
 
-char m_strIRNames[CONVRVRB_IR_COUNT][128];
-
-//////////////////////////////////////////////////////////////////////////////
-
 BarcelonaReverberaProcessor::BarcelonaReverberaProcessor()
 {
 	setControllerClass(kBarcelonaReverberaControllerUID);
 
-	initIRsData();
+	m_impulseResponses.init();
 }
 
 BarcelonaReverberaProcessor::~BarcelonaReverberaProcessor()
@@ -106,7 +91,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 					
 					case BarcelonaReverberaParams::kParamSelectedIR:
 						if (paramQueue->getPoint(numPoints - 1, sampleOffset, value) == kResultTrue)
-							paramSelectedIR = std::min<int>(CONVRVRB_IR_COUNT*value, CONVRVRB_IR_COUNT - 1);
+							paramSelectedIR = std::min<int>(IMPULSE_RESPONSES_COUNT*value, IMPULSE_RESPONSES_COUNT - 1);
 						break;
 
 					case BarcelonaReverberaParams::kBypassId:
@@ -128,14 +113,14 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 	bool hostParamsChange = false;
 	bool selectedIrChange = false;
 
-	if (paramSelectedIR != m_ir_index)
+	if (paramSelectedIR != m_irIndex)
 		selectedIrChange = true;
 	if (blockSizeSamples != m_blockSize)
 		hostParamsChange = true;
 	//if (samplerate != m_samplerate)
 	//	hostParamsChange = true;
 	
-	m_ir_index = paramSelectedIR;
+	m_irIndex = paramSelectedIR;
 	m_blockSize = blockSizeSamples;
 	//m_samplerate = samplerate;
 
@@ -150,11 +135,14 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 
 	if (selectedIrChange)
 	{
-		m_ir_len = m_irs_len[m_ir_index] + m_blockSize - (m_irs_len[m_ir_index] % m_blockSize);
-		assert(m_ir_len <= m_irs_len_with_zeros[m_ir_index]);
-		assert(double(m_ir_len)/double(m_blockSize) == double(m_ir_len/m_blockSize));
+		const uint32_t irLenWithoutZeros = m_impulseResponses.getIrLen(m_irIndex);
+		const uint32_t irLenWithZeros = m_impulseResponses.getIrLenWithZeros(m_irIndex);
 
-		m_convolutionReverb.setupIR(m_irs_ptr[m_ir_index][0], m_irs_ptr[m_ir_index][1], m_ir_len);
+		m_irLen = irLenWithoutZeros + m_blockSize - (irLenWithoutZeros % m_blockSize);
+		assert(m_irLen <= irLenWithZeros);
+		assert(double(m_irLen)/double(m_blockSize) == double(m_irLen/m_blockSize));
+
+		m_convolutionReverb.setupIR(m_impulseResponses.getIrPtr(m_irIndex, 0), m_impulseResponses.getIrPtr(m_irIndex, 1), m_irLen);
 	}
 
 	Vst::Sample32** inChannels = data.inputs[0].channelBuffers32;
@@ -169,7 +157,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 
 	if (m_silenceFlag)
 	{
-		if (m_silenceFlagCounter < m_ir_len)
+		if (m_silenceFlagCounter < m_irLen)
 			m_silenceFlagCounter += m_blockSize;
 		else
 		{
@@ -286,55 +274,6 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::getState(IBStream* state)
 	streamer.writeInt32(toSaveBypass);
 
 	return kResultOk;
-}
-
-//////////////////////////////////////////////////////////////////////////////
-
-void BarcelonaReverberaProcessor::initIRsData(void)
-{
-# if CONVRVRB_USE_EXAMPLE_IR
-	strcpy(m_strIRNames[0], "Example IR - Delta Function");
-	m_irs_len_with_zeros[0] = sizeof(__IR_EXAMPLE__)/(2*sizeof(float));
-	m_irs_len[0] =  m_irs_len_with_zeros[0] - __IR_EXAMPLE_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[0][ch] = __IR_EXAMPLE__[ch];
-# else
-	strcpy(m_strIRNames[0], "MNAC - Museu Nacional d'Art de Catalynya");
-	m_irs_len_with_zeros[0] = sizeof(__IR_20LUFS_MNAC__)/(2*sizeof(float));
-	m_irs_len[0] =  m_irs_len_with_zeros[0] - __IR_20LUFS_MNAC_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[0][ch] = __IR_20LUFS_MNAC__[ch];
-
-	strcpy(m_strIRNames[1], "Centro Cultural La Modelo");
-	m_irs_len_with_zeros[1] = sizeof(__IR_20LUFS_MODELO__)/(2*sizeof(float));
-	m_irs_len[1] =  m_irs_len_with_zeros[1] - __IR_20LUFS_MODELO_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[1][ch] = __IR_20LUFS_MODELO__[ch];
-
-	strcpy(m_strIRNames[2], "Palau de la Musica Catalana");
-	m_irs_len_with_zeros[2] = sizeof(__IR_20LUFS_PALAU__)/(2*sizeof(float));
-	m_irs_len[2] =  m_irs_len_with_zeros[2] - __IR_20LUFS_PALAU_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[2][ch] = __IR_20LUFS_PALAU__[ch];
-
-	strcpy(m_strIRNames[3], "Paraninfo del Edificio Historico de la UB");
-	m_irs_len_with_zeros[3] = sizeof(__IR_20LUFS_PARANINF__)/(2*sizeof(float));
-	m_irs_len[3] =  m_irs_len_with_zeros[3] - __IR_20LUFS_PARANINF_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[3][ch] = __IR_20LUFS_PARANINF__[ch];
-
-	strcpy(m_strIRNames[4], "Refugi 307");
-	m_irs_len_with_zeros[4] = sizeof(__IR_20LUFS_REFUGI_307__)/(2*sizeof(float));
-	m_irs_len[4] =  m_irs_len_with_zeros[4] - __IR_20LUFS_REFUGI_307_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[4][ch] = __IR_20LUFS_REFUGI_307__[ch];
-
-	strcpy(m_strIRNames[5], "Universitat de Barcelona - Lobby");
-	m_irs_len_with_zeros[5] = sizeof(__IR_20LUFS_UB_LOBBY__)/(2*sizeof(float));
-	m_irs_len[5] =  m_irs_len_with_zeros[5] - __IR_20LUFS_UB_LOBBY_EXTRA_ZEROS__;
-	for (int ch=0; ch<2; ch++)
-		m_irs_ptr[5][ch] = __IR_20LUFS_UB_LOBBY__[ch];
-# endif
 }
 
 //////////////////////////////////////////////////////////////////////////////

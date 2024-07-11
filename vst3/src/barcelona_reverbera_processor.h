@@ -50,22 +50,17 @@ protected:
 	bool paramBypass = false;
 
 private:
-	float* m_irs_ptr[CONVRVRB_IR_COUNT][2] = {};
-	uint32_t m_irs_len[CONVRVRB_IR_COUNT] = {};
-	uint32_t m_irs_len_with_zeros[CONVRVRB_IR_COUNT] = {};
-
 	uint32_t m_blockSize = 0;
 	float m_samplerate = 48000.0;
 
-	int m_ir_index = -1;
-	uint32_t m_ir_len = 0;
+	int m_irIndex = -1;
+	uint32_t m_irLen = 0;
 
 	int m_silenceFlag = 0;
 	uint32_t m_silenceFlagCounter = 0;
 
+	ImpulseResponses m_impulseResponses;
 	ConvolutionReverb m_convolutionReverb;
-
-	void initIRsData(void);
 };
 
 //////////////////////////////////////////////////////////////////////////////
