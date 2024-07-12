@@ -4,6 +4,7 @@
 
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
+#include "pluginterfaces/vst/ivstprocesscontext.h"
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +109,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 
 	const int32 numChannels = data.inputs[0].numChannels;
 	const int32 blockSizeSamples = data.numSamples;
-	//const int32 samplerate = data.sampleRate; // XXX TODO
+	const int32 samplerate = (data.processContext != nullptr) ? int32(data.processContext->sampleRate) : 48000; // XXX how to get samplerate if processContext is nullptr?
 
 	bool hostParamsChange = false;
 	bool selectedIrChange = false;
@@ -117,12 +118,12 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 		selectedIrChange = true;
 	if (blockSizeSamples != m_blockSize)
 		hostParamsChange = true;
-	//if (samplerate != m_samplerate)
-	//	hostParamsChange = true;
+	if (samplerate != m_samplerate)
+		hostParamsChange = true;
 	
 	m_irIndex = paramSelectedIR;
 	m_blockSize = blockSizeSamples;
-	//m_samplerate = samplerate;
+	m_samplerate = samplerate;
 
 	if ((m_blockSize == 0) || (numChannels < 1))
 		return kResultOk;
