@@ -109,7 +109,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 
 	const int32 numChannels = data.inputs[0].numChannels;
 	const int32 blockSizeSamples = data.numSamples;
-	const int32 samplerate = (data.processContext != nullptr) ? int32(data.processContext->sampleRate) : 48000; // XXX how to get samplerate if processContext is nullptr?
+	const int32 samplerate = (data.processContext != nullptr) ? int32(data.processContext->sampleRate) : -1; // XXX how to get samplerate if processContext is nullptr?
 
 	bool hostParamsChange = false;
 	bool selectedIrChange = false;
@@ -156,7 +156,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 
 	m_silenceFlag = silenceFlag;
 
-	if (m_silenceFlag)
+	if (m_silenceFlag || (m_samplerate < 0))
 	{
 		if (m_silenceFlagCounter < m_irLen)
 			m_silenceFlagCounter += m_blockSize;
@@ -165,7 +165,7 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 		    data.outputs[0].silenceFlags = data.inputs[0].silenceFlags;
 
 			for (int ch=0; ch<numChannels; ch++)
-				memset(outChannels[ch], 0, m_blockSize);
+				memset(outChannels[ch], 0, m_blockSize*sizeof(float));
 			
 			return kResultOk;
 		}
