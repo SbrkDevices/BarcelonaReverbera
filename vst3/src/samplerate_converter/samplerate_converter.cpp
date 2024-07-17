@@ -1,6 +1,7 @@
 #include "samplerate_converter.h"
 
 #include <cassert>
+#include <cmath>
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -35,7 +36,7 @@ void SamplerateConverter::convert(double samplerateIn, double samplerateOut, flo
 		m_converterData.data_in = audioIn[ch];
 		m_converterData.data_out = audioOut[ch];
 		m_converterData.input_frames = audioInLength;
-		m_converterData.output_frames = floor(double(audioInLength)*samplerateOut/samplerateIn);
+		m_converterData.output_frames = std::ceil(double(audioInLength)*samplerateOut/samplerateIn);
 		m_converterData.end_of_input = 1;
 				
 		const int res = src_process(m_converter, &m_converterData);

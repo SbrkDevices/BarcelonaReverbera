@@ -1,6 +1,13 @@
 cmake_minimum_required(VERSION 3.14.0)
 set(CMAKE_OSX_DEPLOYMENT_TARGET 10.13 CACHE STRING "")
 
+# C/C++ optimization flags and other GCC flags:
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g")
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+endif()
+
 project(BarcelonaReverbera
     VERSION 0.0.0.1
     DESCRIPTION "Barcelona Reverbera VST 3 Plug-in"
@@ -13,7 +20,11 @@ add_subdirectory(external)
 
 smtg_enable_vst3_sdk()
 
+set(BARCELONA_REVERBERA_LIBSAMPLERATE_INCLUDE_DIR "external/${BARCELONA_REVERBERA_LIBSAMPLERATE_INCLUDE_DIR}")
+set(BARCELONA_REVERBERA_LIBSAMPLERATE_LIB_DIR "external/${BARCELONA_REVERBERA_LIBSAMPLERATE_LIB_DIR}")
+
 smtg_add_vst3plugin(BarcelonaReverbera
+    ${BARCELONA_REVERBERA_LIBSAMPLERATE_INCLUDE_DIR}/samplerate.h
     external/pffft/pffft.h
     external/pffft/pffft.c
     src/fft/fft.h
@@ -36,6 +47,7 @@ smtg_add_vst3plugin(BarcelonaReverbera
 
 target_include_directories(BarcelonaReverbera
     PRIVATE
+        ${BARCELONA_REVERBERA_LIBSAMPLERATE_INCLUDE_DIR}
         external/pffft
         src
 )
@@ -44,6 +56,7 @@ target_link_libraries(BarcelonaReverbera
     PRIVATE
         sdk
         vstgui_support
+        ${CMAKE_CURRENT_SOURCE_DIR}/${BARCELONA_REVERBERA_LIBSAMPLERATE_LIB_DIR}/libsamplerate.a
 )
 
 smtg_target_add_plugin_resources(BarcelonaReverbera
