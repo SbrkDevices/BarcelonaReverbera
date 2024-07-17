@@ -3,6 +3,7 @@
 # Target platform
 TARGET_PLAT="linux_x86_64"
 #TARGET_PLAT="mac_x86_64"
+#TARGET_PLAT="mac_apple_silicon"
 
 LIBSAMPLERATE_VERSION="0.2.2"
 
@@ -35,6 +36,14 @@ then
 
   export CFLAGS="-O3 -ffast-math -funroll-loops -ftree-vectorize -fomit-frame-pointer -fPIC -mmacosx-version-min=10.9"
   export CXXFLAGS=$CFLAGS
+elif [ $TARGET_PLAT = "mac_apple_silicon" ]
+then
+  echo "Checking build machine to make sure it is appropriate for \"mac_apple_silicon\"..."
+  GCC_DUMPMACHINE=$(gcc -dumpmachine)
+  [[ $GCC_DUMPMACHINE != "arm64-apple-darwin"* ]] && exit 1
+  echo "Build machine ok ($GCC_DUMPMACHINE)"
+
+  export CFLAGS="-O3 -ffast-math -funroll-loops -ftree-vectorize -fomit-frame-pointer -fPIC -mmacosx-version-min=10.9"
 else
   echo "ERROR: Invalid TARGET_PLAT"
   exit 1
