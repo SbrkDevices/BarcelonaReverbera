@@ -4,6 +4,7 @@
 
 #include "barcelona_reverbera_cids.h"
 #include "fft/fft.h"
+#include "samplerate_converter/samplerate_converter.h"
 #include "convolution_reverb/convolution_reverb.h"
 
 //////////////////////////////////////////////////////////////////////////////
@@ -61,6 +62,9 @@ private:
 
 	ImpulseResponses m_impulseResponses;
 	ConvolutionReverb m_convolutionReverb;
+
+	float m_samplerateConvertedIr[2][BARCELONA_REVERBERA_IR_MAX_LEN_SAMPLES]; // IR is stored here when samplerate is different than DEFAULT_IR_SAMPLERATE
+	uint32_t m_samplerateConvertedIrLength = 0;
 };
 
 //////////////////////////////////////////////////////////////////////////////

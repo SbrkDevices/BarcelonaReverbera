@@ -7,9 +7,13 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
+#define DEFAULT_IR_SAMPLERATE									(48000)
+#define MIN_SAMPLERATE											(44100)
+#define MAX_SAMPLERATE											(48000*4)
+
 #define BARCELONA_REVERBERA_MAX_BLOCK_SIZE						(8*1024)
 #define BARCELONA_REVERBERA_MIN_BLOCK_SIZE						(8)
-#define BARCELONA_REVERBERA_IR_MAX_LEN_SAMPLES					(48000*16) // 16 seconds of IR...
+#define BARCELONA_REVERBERA_IR_MAX_LEN_SAMPLES					(MAX_SAMPLERATE*10) // 10 seconds of IR at max samplerate...
 
 #define CONVRVRB_SMALLEST_STAGE_SIZE							(64)
 #define CONVRVRB_LONGEST_STAGE_SIZE								(8*1024)

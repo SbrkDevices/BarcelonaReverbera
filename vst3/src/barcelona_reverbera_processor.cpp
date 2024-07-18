@@ -17,6 +17,8 @@ BarcelonaReverberaProcessor::BarcelonaReverberaProcessor()
 	setControllerClass(kBarcelonaReverberaControllerUID);
 
 	m_impulseResponses.init();
+
+	memset(m_samplerateConvertedIr, 0, sizeof(m_samplerateConvertedIr));
 }
 
 BarcelonaReverberaProcessor::~BarcelonaReverberaProcessor()
@@ -111,15 +113,16 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 	const int32 blockSizeSamples = data.numSamples;
 	const int32 samplerate = (data.processContext != nullptr) ? int32(data.processContext->sampleRate) : -1; // XXX how to get samplerate if processContext is nullptr?
 
-	bool hostParamsChange = false;
+	bool samplerateChange = false;
+	bool blockSizeChange = false;
 	bool selectedIrChange = false;
 
 	if (paramSelectedIR != m_irIndex)
 		selectedIrChange = true;
 	if (blockSizeSamples != m_blockSize)
-		hostParamsChange = true;
+		blockSizeChange = true;
 	if (samplerate != m_samplerate)
-		hostParamsChange = true;
+		samplerateChange = true;
 	
 	m_irIndex = paramSelectedIR;
 	m_blockSize = blockSizeSamples;
@@ -131,19 +134,46 @@ tresult PLUGIN_API BarcelonaReverberaProcessor::process(Vst::ProcessData& data)
 	assert(m_blockSize >= BARCELONA_REVERBERA_MIN_BLOCK_SIZE);
 	assert(m_blockSize <= BARCELONA_REVERBERA_MAX_BLOCK_SIZE);
 
-	if (hostParamsChange)
+	if (blockSizeChange)
 		m_convolutionReverb.init(m_blockSize);
 
-	if (selectedIrChange)
+	if (samplerateChange)
 	{
-		const uint32_t irLenWithoutZeros = m_impulseResponses.getIrLen(m_irIndex);
-		const uint32_t irLenWithZeros = m_impulseResponses.getIrLenWithZeros(m_irIndex);
+		if (m_samplerate != DEFAULT_IR_SAMPLERATE)
+		{
+			if ((m_samplerate < MIN_SAMPLERATE) || (m_samplerate > MAX_SAMPLERATE))
+				m_samplerate = -1;
+			else
+			{
+				float* irAudioIn[2] = { m_impulseResponses.getIrPtr(m_irIndex, 0), m_impulseResponses.getIrPtr(m_irIndex, 1) };
+				float* irAudioOut[2] = { m_samplerateConvertedIr[0], m_samplerateConvertedIr[1] };
 
-		m_irLen = irLenWithoutZeros + m_blockSize - (irLenWithoutZeros % m_blockSize);
-		assert(m_irLen <= irLenWithZeros);
-		assert(double(m_irLen)/double(m_blockSize) == double(m_irLen/m_blockSize));
+				SamplerateConverter::convert(DEFAULT_IR_SAMPLERATE, m_samplerate, irAudioIn, irAudioOut, m_impulseResponses.getIrLen(m_irIndex), BARCELONA_REVERBERA_IR_MAX_LEN_SAMPLES, m_samplerateConvertedIrLength);
+			}
+		}
 
-		m_convolutionReverb.setupIR(m_impulseResponses.getIrPtr(m_irIndex, 0), m_impulseResponses.getIrPtr(m_irIndex, 1), m_irLen);
+		selectedIrChange = true;
+	}
+
+	if (selectedIrChange && (m_samplerate > 0))
+	{
+		if (m_samplerate == DEFAULT_IR_SAMPLERATE)
+		{
+			const uint32_t irLenWithoutZeros = m_impulseResponses.getIrLen(m_irIndex);
+			const uint32_t irLenWithZeros = m_impulseResponses.getIrLenWithZeros(m_irIndex);
+
+			m_irLen = irLenWithoutZeros + m_blockSize - (irLenWithoutZeros % m_blockSize);
+			assert(m_irLen <= irLenWithZeros);
+			assert(double(m_irLen)/double(m_blockSize) == double(m_irLen/m_blockSize));
+
+			m_convolutionReverb.setupIR(m_impulseResponses.getIrPtr(m_irIndex, 0), m_impulseResponses.getIrPtr(m_irIndex, 1), m_irLen);
+		}
+		else
+		{
+			const uint32_t irLenBlockAligned = m_samplerateConvertedIrLength + m_blockSize - (m_samplerateConvertedIrLength % m_blockSize);
+			assert(irLenBlockAligned <= BARCELONA_REVERBERA_IR_MAX_LEN_SAMPLES);
+			m_convolutionReverb.setupIR(m_samplerateConvertedIr[0], m_samplerateConvertedIr[1], irLenBlockAligned);
+		}
 	}
 
 	Vst::Sample32** inChannels = data.inputs[0].channelBuffers32;
