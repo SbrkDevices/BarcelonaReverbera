@@ -147,12 +147,15 @@ public:
 
 		if (m_processInThread)
 		{
-#		  if JUCE_MAC && 0 // XXX does this work?
-			m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withApproximateAudioProcessingTime(m_blockSize, samplerate));
-#		  elif JUCE_LINUX
-			m_thread.startThread(juce::Thread::Priority::highest); // XXX why does startRealtimeThread() not work on linux?
-#		  else 
+#		  if JUCE_MAC
+#		   if 0 // XXX does this work on Apple Silicon? Does not work on Intel...
+			m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withMaximumProcessingTimeMs(m_blockSize*1000.0/samplerate));
+#		   else
 			m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withPriority(9));
+#		   endif
+#		  else
+			m_thread.startRealTimeThread(juce::Thread::RealtimeOptions{}.withPriority(9));
+			//m_thread.startThread(juce::Thread::Priority::highest);
 #		  endif
 		}
 		else
