@@ -31,7 +31,7 @@ public:
 	void init(void);
 	void exit(void);
 
-    void process(const float* audioIn[2] __restrict, float* audioOut[2] __restrict, bool stereo, double samplerate, int blockSize, float decayControl, float colorControl, float dryWetControl, int irIndex);
+    void process(const float* __restrict audioIn[2], float* __restrict audioOut[2], bool stereo, double samplerate, int blockSize, float decayControl, float colorControl, float dryWetControl, int irIndex);
 
 private:
 	void reconfigure(void);

@@ -154,8 +154,8 @@ public:
 			m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withPriority(9));
 #		   endif
 #		  else
-			m_thread.startRealTimeThread(juce::Thread::RealtimeOptions{}.withPriority(9));
-			//m_thread.startThread(juce::Thread::Priority::highest);
+			//m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withPriority(9)); // XXX not working on linux?
+			m_thread.startThread(juce::Thread::Priority::highest);
 #		  endif
 		}
 		else
@@ -170,7 +170,7 @@ public:
 			convolutionExit();
 	}
 
-	inline void process(const float* audioIn[2] __restrict, float* audioOut[2] __restrict)
+	inline void process(const float* __restrict audioIn[2] , float* __restrict audioOut[2])
 	{
 		if (m_skipThisStage)
 			return;

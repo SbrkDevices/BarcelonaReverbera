@@ -152,7 +152,7 @@ public:
         for_each_fft_stage([] (auto& stage) { stage.exit(); });
 	}
 
-	inline void process(const float* audioIn[2] __restrict, float* audioOut[2] __restrict)
+	inline void process(const float* __restrict audioIn[2], float* __restrict audioOut[2])
 	{
 		const uint8_t numChannels = m_numChannels;
 		const uint32_t audioProcessingBlockSize = m_audioProcessingBlockSize;

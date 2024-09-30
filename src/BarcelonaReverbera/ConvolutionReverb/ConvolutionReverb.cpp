@@ -57,7 +57,7 @@ void ConvolutionReverb::exit(void)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void ConvolutionReverb::process(const float* audioIn[2] __restrict, float* audioOut[2] __restrict, bool stereo, double samplerate, int blockSize, float decayControl, float colorControl, float dryWetControl, int irIndex)
+void ConvolutionReverb::process(const float* __restrict audioIn[2], float* __restrict audioOut[2], bool stereo, double samplerate, int blockSize, float decayControl, float colorControl, float dryWetControl, int irIndex)
 {
 	const uint32_t numChannels = stereo ? 2 : 1;
 
@@ -158,8 +158,8 @@ void ConvolutionReverb::reconfigure(void)
 	m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withPriority(8));
 #  endif
 # else
-	m_thread.startRealTimeThread(juce::Thread::RealtimeOptions{}.withPriority(8));
-	//m_thread.startThread(juce::Thread::Priority::highest);
+	//m_thread.startRealtimeThread(juce::Thread::RealtimeOptions{}.withPriority(8)); // XXX not working on linux?
+	m_thread.startThread(juce::Thread::Priority::high);
 # endif
 
 	m_dryWetRecalculateTimesPerBlock = m_blockSize / m_dryWetSamplesBetweenRecalculate;
