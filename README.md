@@ -35,3 +35,13 @@ Visual Studio 2022 (Windows): For each project, open its Properties page, go to 
 ## License
 
 See LICENSE file.
+
+## Future work
+
+ - Add support for more languages: Spanish, Catalan...
+ - Improvement of image resolution.
+ - Increasing IR library: more IRs of Barcelona and other places. Possibly: support for custom IRs.
+ - Thread system: work on the priority scheme and organization of the FFT-block processing threads.
+ - Quality improvement: double precission (64-bit) floating point processing.
+ - SIMD optimizations.
+ - Other optimizations.
