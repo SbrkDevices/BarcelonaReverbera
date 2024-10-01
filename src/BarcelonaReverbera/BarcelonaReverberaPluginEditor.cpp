@@ -228,9 +228,6 @@ BarcelonaReverberaAudioProcessorEditor::BarcelonaReverberaAudioProcessorEditor(B
 
         repaint();
     };
-
-    m_labelIrDescription.setBounds(225.0, 314.0, 452.0, 79.0);
-    m_labelIrDescription.setJustificationType(juce::Justification::topLeft);
     
     m_decaySliderAtt.reset(new AudioProcessorValueTreeState::SliderAttachment(m_valueTreeState, "decayState", m_decaySlider));
     m_colorSliderAtt.reset(new AudioProcessorValueTreeState::SliderAttachment(m_valueTreeState, "colorState", m_colorSlider));
@@ -280,7 +277,9 @@ BarcelonaReverberaAudioProcessorEditor::BarcelonaReverberaAudioProcessorEditor(B
     m_dryWetLabel.setFont(FontOptions(ourFont).withHeight(knobLabelFontWeight));
     m_dryWetLabel.setJustificationType(Justification::centred);
     
-    m_labelIrDescription.setFont(FontOptions(ourFont).withHeight(23.0f));
+    m_labelIrDescription.setBounds(217.0, 304.0, 470.0, 100.0);
+    m_labelIrDescription.setJustificationType(juce::Justification::topLeft);
+    m_labelIrDescription.setFont(FontOptions(ourFont).withHeight(24.0f));
  
     addAndMakeVisible(m_decaySlider);
     addAndMakeVisible(m_colorSlider);
