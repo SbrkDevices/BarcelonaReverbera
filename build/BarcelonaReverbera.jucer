@@ -4,11 +4,11 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1"
               companyName="sbrk devices" companyWebsite="www.sbrkdevices.com"
               companyEmail="dani@sbrkdevices.com" pluginManufacturerCode="SBRK"
-              pluginCode="BcnR" pluginVST3Category="Fx,Reverb" headerPath="../../../src/BarcelonaReverbera/ConvolutionReverb;../../../src/BarcelonaReverbera/ConvolutionReverb/ConvolutionEngine;../../../src/BarcelonaReverbera/ConvolutionReverb/Fft;../../../src/BarcelonaReverbera/ConvolutionReverb/DspThread;../../../src/BarcelonaReverbera/ConvolutionReverb/ImpulseResponses;../../../src/BarcelonaReverbera/ConvolutionReverb/SamplerateConverter;../../../src/BarcelonaReverbera/ConvolutionReverb/FilterBiquad;../../../src/pffft;">
+              pluginCode="BcnR" pluginVST3Category="Fx,Reverb" headerPath="../../../src/BarcelonaReverbera/ImageDescriptions;../../../src/BarcelonaReverbera/ConvolutionReverb;../../../src/BarcelonaReverbera/ConvolutionReverb/ConvolutionEngine;../../../src/BarcelonaReverbera/ConvolutionReverb/Fft;../../../src/BarcelonaReverbera/ConvolutionReverb/DspThread;../../../src/BarcelonaReverbera/ConvolutionReverb/ImpulseResponses;../../../src/BarcelonaReverbera/ConvolutionReverb/SamplerateConverter;../../../src/BarcelonaReverbera/ConvolutionReverb/FilterBiquad;../../../src/pffft;">
   <MAINGROUP id="XfiCGo" name="BarcelonaReverbera">
     <GROUP id="{E9365A14-5E41-ADFA-EBD3-E683ACC6E7A5}" name="resources">
-      <FILE id="DL95R5" name="IR_img_00.jpg" compile="0" resource="1" file="../resources/IR_img_00.jpg"/>
-      <FILE id="QxJYTJ" name="IR_img_01.jpg" compile="0" resource="1" file="../resources/IR_img_01.jpg"/>
+      <FILE id="kjmRJp" name="IR_img_00.png" compile="0" resource="1" file="../resources/IR_img_00.png"/>
+      <FILE id="QxL4hV" name="IR_img_01.png" compile="0" resource="1" file="../resources/IR_img_01.png"/>
       <FILE id="ongm9D" name="NewsCycle-Regular.ttf" compile="0" resource="1"
             file="../resources/NewsCycle-Regular.ttf"/>
     </GROUP>
@@ -61,6 +61,10 @@
           resource="0" file="../src/BarcelonaReverbera/BarcelonaReverberaPluginProcessor.cpp"/>
     <FILE id="FLBDG5" name="BarcelonaReverberaPluginProcessor.h" compile="0"
           resource="0" file="../src/BarcelonaReverbera/BarcelonaReverberaPluginProcessor.h"/>
+    <GROUP id="{7621CD82-9A43-596D-F6A8-1880206AD15C}" name="ImageDescriptions">
+      <FILE id="w4HK5N" name="ImageDescriptions.h" compile="0" resource="0"
+            file="../src/BarcelonaReverbera/ImageDescriptions/ImageDescriptions.h"/>
+    </GROUP>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
@@ -85,18 +89,18 @@
         <CONFIGURATION isDebug="0" name="Release" targetName="BarcelonaReverbera"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.2/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.1/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
     <VS2022 targetFolder="Builds/VisualStudio2022" extraDefs="_USE_MATH_DEFINES">
@@ -105,18 +109,18 @@
         <CONFIGURATION isDebug="0" name="Release" targetName="BarcelonaReverbera"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.2/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.1/modules"/>
       </MODULEPATHS>
     </VS2022>
     <XCODE_MAC targetFolder="Builds/MacOSX" xcodeValidArchs="arm64,arm64e,x86_64">
@@ -127,18 +131,18 @@
                        osxCompatibility="11.0 SDK" optimisation="6" osxArchitecture="64BitIntel"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.2/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.2/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_core" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_events" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_graphics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../src/juce/JUCE-8.0.1/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../src/juce/JUCE-8.0.1/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>

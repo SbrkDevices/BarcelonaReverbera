@@ -224,8 +224,13 @@ BarcelonaReverberaAudioProcessorEditor::BarcelonaReverberaAudioProcessorEditor(B
         m_irImagePtr = (char*) IrBuffers::getIrImgPtr(irIndex);
         m_irImageSize = IrBuffers::getIrImgSize(irIndex);
 
+        m_labelIrDescription.setText(ImageDescriptions::getDescription(irIndex), juce::dontSendNotification);
+
         repaint();
     };
+
+    m_labelIrDescription.setBounds(225.0, 314.0, 452.0, 79.0);
+    m_labelIrDescription.setJustificationType(juce::Justification::topLeft);
     
     m_decaySliderAtt.reset(new AudioProcessorValueTreeState::SliderAttachment(m_valueTreeState, "decayState", m_decaySlider));
     m_colorSliderAtt.reset(new AudioProcessorValueTreeState::SliderAttachment(m_valueTreeState, "colorState", m_colorSlider));
@@ -263,17 +268,19 @@ BarcelonaReverberaAudioProcessorEditor::BarcelonaReverberaAudioProcessorEditor(B
     m_irIndexComboBox.setColour(ComboBox::arrowColourId, Colour(BCNRVRB_COLOR_BLACK));
     m_irIndexComboBox.setColour(ComboBox::focusedOutlineColourId, Colour(BCNRVRB_COLOR_PURPLE));
 
-    auto knobLabelFont = Typeface::createSystemTypefaceFor(BinaryData::NewsCycleRegular_ttf, BinaryData::NewsCycleRegular_ttfSize);
+    auto ourFont = Typeface::createSystemTypefaceFor(BinaryData::NewsCycleRegular_ttf, BinaryData::NewsCycleRegular_ttfSize);
     const float knobLabelFontWeight = 30.0f;
     m_decayLabel.setText("Decay", juce::dontSendNotification);
-    m_decayLabel.setFont(FontOptions(knobLabelFont).withHeight(knobLabelFontWeight));
+    m_decayLabel.setFont(FontOptions(ourFont).withHeight(knobLabelFontWeight));
     m_decayLabel.setJustificationType(Justification::centred);
     m_colorLabel.setText("Color", juce::dontSendNotification);
-    m_colorLabel.setFont(FontOptions(knobLabelFont).withHeight(knobLabelFontWeight));
+    m_colorLabel.setFont(FontOptions(ourFont).withHeight(knobLabelFontWeight));
     m_colorLabel.setJustificationType(Justification::centred);
     m_dryWetLabel.setText("Dry/Wet", juce::dontSendNotification);
-    m_dryWetLabel.setFont(FontOptions(knobLabelFont).withHeight(knobLabelFontWeight));
+    m_dryWetLabel.setFont(FontOptions(ourFont).withHeight(knobLabelFontWeight));
     m_dryWetLabel.setJustificationType(Justification::centred);
+    
+    m_labelIrDescription.setFont(FontOptions(ourFont).withHeight(23.0f));
  
     addAndMakeVisible(m_decaySlider);
     addAndMakeVisible(m_colorSlider);
@@ -282,6 +289,7 @@ BarcelonaReverberaAudioProcessorEditor::BarcelonaReverberaAudioProcessorEditor(B
     addAndMakeVisible(m_decayLabel);
     addAndMakeVisible(m_colorLabel);
     addAndMakeVisible(m_dryWetLabel);
+    addAndMakeVisible(m_labelIrDescription);
 }
 
 BarcelonaReverberaAudioProcessorEditor::~BarcelonaReverberaAudioProcessorEditor(void)

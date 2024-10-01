@@ -8,11 +8,11 @@
 
 namespace BinaryData
 {
-    extern const char*   IR_img_00_jpg;
-    const int            IR_img_00_jpgSize = 124769;
+    extern const char*   IR_img_00_png;
+    const int            IR_img_00_pngSize = 7445;
 
-    extern const char*   IR_img_01_jpg;
-    const int            IR_img_01_jpgSize = 156741;
+    extern const char*   IR_img_01_png;
+    const int            IR_img_01_pngSize = 8648;
 
     extern const char*   NewsCycleRegular_ttf;
     const int            NewsCycleRegular_ttfSize = 178732;

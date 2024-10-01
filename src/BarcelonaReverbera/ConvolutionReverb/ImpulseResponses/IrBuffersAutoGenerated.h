@@ -94,11 +94,11 @@ public:
 
         if (irIndex == 0)
         {
-            return (char*) BinaryData::IR_img_00_jpg;
+            return (char*) BinaryData::IR_img_00_png;
         }
         if (irIndex == 1)
         {
-            return (char*) BinaryData::IR_img_01_jpg;
+            return (char*) BinaryData::IR_img_01_png;
         }
         
         return nullptr;
@@ -111,11 +111,11 @@ public:
 
         if (irIndex == 0)
         {
-            return BinaryData::IR_img_00_jpgSize;
+            return BinaryData::IR_img_00_pngSize;
         }
         if (irIndex == 1)
         {
-            return BinaryData::IR_img_01_jpgSize;
+            return BinaryData::IR_img_01_pngSize;
         }
         
         return 0;

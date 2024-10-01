@@ -42,7 +42,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Users/dsanz006/data/BarcelonaReverbera/src/juce/JUCE-8.0.2/extras/AudioPluginHost/Builds/MacOSX/build/Release/AudioPluginHost.app">
+         FilePath = "/Users/dsanz006/data/BarcelonaReverbera/src/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/MacOSX/build/Release/AudioPluginHost.app">
       </PathRunnable>
    </LaunchAction>
    <ProfileAction

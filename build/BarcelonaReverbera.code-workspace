@@ -10,6 +10,10 @@
 			"path": "../src"
 		},
 		{
+			"name": "resources",
+			"path": "../resources"
+		},
+		{
 			"name": "ConvertWavsToCArray",
 			"path": "../ConvertWavsToCArray"
 		},
@@ -23,10 +27,10 @@
 			/* Utility tasks (Linux only) */
 			{
 				"label": "Launch Projucer",
-				"command": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/Projucer/Builds/LinuxMakefile/build/Projucer",
+				"command": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/Projucer/Builds/LinuxMakefile/build/Projucer",
 				"type": "shell",
 				"args": [ "&" ],
-				"options": { "cwd": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/Projucer/Builds/LinuxMakefile/build/" },
+				"options": { "cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/Projucer/Builds/LinuxMakefile/build/" },
 				"presentation": { "echo": false, "reveal": "never" },
 				"problemMatcher": []
 			},
@@ -78,8 +82,8 @@
 
 				"linux":
 				{
-					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
-					"program": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
+					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
+					"program": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
 					"args": [],
 
 					"MIMode": "gdb",
@@ -108,8 +112,8 @@
 
 				"linux":
 				{
-					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
-					"program": "${workspaceFolder:src}/juce/JUCE-8.0.2/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
+					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
+					"program": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
 					"args": [],
 
 					"MIMode": "gdb",

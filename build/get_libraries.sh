@@ -2,7 +2,7 @@
 
 printf "\n\nGETTING EXTERNAL LIBRARIES...\n"
 
-JUCE_VERSION="8.0.2"
+JUCE_VERSION="8.0.1"
 PFFFT_COMMIT_ID="fbc4058" # using specific commit tag instead of version number
 
 SRC_DIR="$PWD/../src"

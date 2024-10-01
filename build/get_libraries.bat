@@ -3,7 +3,7 @@ echo.
 echo GETTING EXTERNAL LIBRARIES...
 echo.
 
-set "JUCE_VERSION=8.0.2"
+set "JUCE_VERSION=8.0.1"
 set "PFFFT_COMMIT_ID=fbc4058"  REM using specific commit tag instead of version number
 
 set "SRC_DIR=%~dp0..\src"

@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "BarcelonaReverberaPluginProcessor.h"
+#include "ImageDescriptions.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -57,6 +58,8 @@ private:
 
     char* m_irImagePtr = nullptr;
     int m_irImageSize = 0;
+
+    juce::Label m_labelIrDescription;
 
     juce::Slider m_decaySlider;
     juce::Slider m_colorSlider;
