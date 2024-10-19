@@ -1,0 +1,148 @@
+{
+	"folders":
+	[
+		{
+			"name": "build",
+			"path": "../build"
+		},
+		{
+			"name": "src",
+			"path": "../src"
+		},
+		{
+			"name": "resources",
+			"path": "../resources"
+		},
+		{
+			"name": "ConvertWavsToCArray",
+			"path": "../ConvertWavsToCArray"
+		},
+	],
+
+	"tasks":
+	{
+		"version": "2.0.0",
+		"tasks":
+		[
+			/* Utility tasks (Linux only) */
+			{
+				"label": "Launch Projucer",
+				"command": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/Projucer/Builds/LinuxMakefile/build/Projucer",
+				"type": "shell",
+				"args": [ "&" ],
+				"options": { "cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/Projucer/Builds/LinuxMakefile/build/" },
+				"presentation": { "echo": false, "reveal": "never" },
+				"problemMatcher": []
+			},
+
+			/* Build tasks (Debug/Release) (Linux only) */
+			{
+				"label": "Make - Debug",
+				"command": "make CONFIG=Debug",
+				"type": "shell",
+				"args": [],
+				"options": { "cwd": "${workspaceFolder:build}/Builds/LinuxMakefile" },
+				"problemMatcher": [ "$tsc" ],
+				"presentation": { "reveal": "always", "clear": true },
+				"group": "build"
+			},
+			{
+				"label": "Make - Release",
+				"command": "make CONFIG=Release CFLAGS='-mavx -funroll-loops'", // will only work with x86 CPUs with AVX (2011) and newer
+				"type": "shell",
+				"args": [],
+				"options": { "cwd": "${workspaceFolder:build}/Builds/LinuxMakefile" },
+				"problemMatcher": [ "$tsc" ],
+				"presentation": { "reveal": "always", "clear": true },
+				"group": "build"
+			},
+			{
+				"label": "Make - Clean",
+				"command": "make",
+				"type": "shell",
+				"args": ["clean"],
+				"options": { "cwd": "${workspaceFolder:build}/Builds/LinuxMakefile" },
+				"problemMatcher": [ "$tsc" ],
+				"presentation": { "reveal": "always" },
+				"group": "build"
+			}
+		]
+	},
+
+	"launch":
+	{
+		"version": "0.2.0",
+		"configurations":
+		[
+			{
+				"name": "Debug",
+
+				"type": "cppdbg",
+				"request": "launch",
+
+				"linux":
+				{
+					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
+					"program": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
+					"args": [],
+
+					"MIMode": "gdb",
+					"setupCommands":
+					[
+						{
+							"description": "Enable pretty-printing for gdb",
+							"text": "-enable-pretty-printing",
+							"ignoreFailures": true
+						}
+					],
+
+					"externalConsole": false,
+
+					"preLaunchTask": "Make - Debug"
+				},
+
+				"stopAtEntry": false,
+				"environment": [],
+			},
+			{
+				"name": "Release",
+
+				"type": "cppdbg",
+				"request": "launch",
+
+				"linux":
+				{
+					"cwd": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/",
+					"program": "${workspaceFolder:src}/juce/JUCE-8.0.1/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
+					"args": [],
+
+					"MIMode": "gdb",
+					"setupCommands":
+					[
+						{
+							"description": "Enable pretty-printing for gdb",
+							"text": "-enable-pretty-printing",
+							"ignoreFailures": true
+						}
+					],
+
+					"externalConsole": false,
+
+					"preLaunchTask": "Make - Release"
+				},
+
+				"stopAtEntry": false,
+				"environment": [],
+			},
+		],
+		"compounds": []
+	},
+	"settings": {
+		"files.associations": {
+			"*.hzp": "xml",
+			"*.hzs": "xml",
+			"*.make": "makefile",
+			"*.mm": "cpp"
+		}
+	},
+}

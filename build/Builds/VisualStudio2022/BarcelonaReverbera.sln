@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio Version 17
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BarcelonaReverbera - Standalone Plugin", "BarcelonaReverbera_StandalonePlugin.vcxproj", "{7B3AB575-DCAF-B1E6-C6C0-D80C4E5D5151}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8ED8A130-C027-7530-2B2A-49657B081B05} = {8ED8A130-C027-7530-2B2A-49657B081B05}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BarcelonaReverbera - VST3", "BarcelonaReverbera_VST3.vcxproj", "{ED8AE44C-1BB5-90FA-8623-730B6774B549}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8ED8A130-C027-7530-2B2A-49657B081B05} = {8ED8A130-C027-7530-2B2A-49657B081B05}
+		{10D3009C-6CA9-4A8E-EFA0-87555068D046} = {10D3009C-6CA9-4A8E-EFA0-87555068D046}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BarcelonaReverbera - Shared Code", "BarcelonaReverbera_SharedCode.vcxproj", "{8ED8A130-C027-7530-2B2A-49657B081B05}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BarcelonaReverbera - VST3 Manifest Helper", "BarcelonaReverbera_VST3ManifestHelper.vcxproj", "{10D3009C-6CA9-4A8E-EFA0-87555068D046}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED8AE44C-1BB5-90FA-8623-730B6774B549}.Debug|x64.ActiveCfg = Debug|x64
+		{ED8AE44C-1BB5-90FA-8623-730B6774B549}.Debug|x64.Build.0 = Debug|x64
+		{ED8AE44C-1BB5-90FA-8623-730B6774B549}.Release|x64.ActiveCfg = Release|x64
+		{ED8AE44C-1BB5-90FA-8623-730B6774B549}.Release|x64.Build.0 = Release|x64
+		{7B3AB575-DCAF-B1E6-C6C0-D80C4E5D5151}.Debug|x64.ActiveCfg = Debug|x64
+		{7B3AB575-DCAF-B1E6-C6C0-D80C4E5D5151}.Debug|x64.Build.0 = Debug|x64
+		{7B3AB575-DCAF-B1E6-C6C0-D80C4E5D5151}.Release|x64.ActiveCfg = Release|x64
+		{7B3AB575-DCAF-B1E6-C6C0-D80C4E5D5151}.Release|x64.Build.0 = Release|x64
+		{8ED8A130-C027-7530-2B2A-49657B081B05}.Debug|x64.ActiveCfg = Debug|x64
+		{8ED8A130-C027-7530-2B2A-49657B081B05}.Debug|x64.Build.0 = Debug|x64
+		{8ED8A130-C027-7530-2B2A-49657B081B05}.Release|x64.ActiveCfg = Release|x64
+		{8ED8A130-C027-7530-2B2A-49657B081B05}.Release|x64.Build.0 = Release|x64
+		{10D3009C-6CA9-4A8E-EFA0-87555068D046}.Debug|x64.ActiveCfg = Debug|x64
+		{10D3009C-6CA9-4A8E-EFA0-87555068D046}.Debug|x64.Build.0 = Debug|x64
+		{10D3009C-6CA9-4A8E-EFA0-87555068D046}.Release|x64.ActiveCfg = Release|x64
+		{10D3009C-6CA9-4A8E-EFA0-87555068D046}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
