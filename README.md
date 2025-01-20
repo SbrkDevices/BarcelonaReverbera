@@ -39,6 +39,7 @@ See LICENSE file.
 ## Future work
 
  - Add support for more languages: Spanish, Catalan...
+ - Set decay knob in seconds or milliseconds units, and color and dry/wet in percentage units.
  - Improvement of image resolution.
  - Increasing IR library: more IRs of Barcelona and other places. Possibly: support for custom IRs.
  - Thread system: work on the priority scheme and organization of the FFT-block processing threads.
